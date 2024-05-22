@@ -1,0 +1,417 @@
+.myTable {
+  // width: 63rem;
+
+  border-radius: 35px;
+  background-color: #fff;
+  padding: 12px 0;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  .allprofessors {
+    height: 2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 36rem;
+    padding: 10px 14px;
+
+
+    h4.profHeader {
+      font-size: 29px !important;
+      font-weight: 500 !important;
+    }
+
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #7b777788;
+      background: #161616;
+
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+  }
+
+  .addNewDoctorToCourse {
+    button {
+      border: none;
+      outline: none;
+      background-color: #1F1F1F;
+      color: #fff;
+      border-radius: 17px;
+      padding: 10px 27px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+
+  table {
+
+
+
+    tr {
+      border-bottom: 1px solid rgb(180, 176, 176);
+
+
+      &:last-child {
+        border: none;
+      }
+
+      th {
+        padding: 10px;
+        font-size: 30px;
+        border-bottom: 1px solid #1d1c1c;
+        padding-bottom: 12px;
+        font-weight: 700;
+        padding-top: 14px;
+        font-weight: 600;
+        padding-top: 14px;
+
+        color: #536dc5;
+
+
+        &:last-child {
+          text-align: center;
+        }
+      }
+
+      td {
+        padding: 15px 10px 20px 10px;
+        font-size: 21px;
+        font-weight: 600;
+        font-size: 24px;
+
+      }
+
+      tr {}
+
+
+      .allprofessorCourse {
+        display: flex;
+        justify-content: space-between;
+
+        .profCour {
+          display: flex;
+          width: 36vw;
+          align-items: center;
+          overflow-x: auto;
+          overflow-y: hidden;
+
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: transparent;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: #ded7d7;
+            background: #acacac88;
+            border-radius: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb:hover {
+            background: #a4a3a3;
+          }
+
+          display: flex;
+          align-items: center;
+
+          border-left: none;
+
+          /* Make the <p> elements inline-block */
+          p {
+            display: inline-block;
+            font-size: 14px;
+            padding: 6px 12px;
+            white-space: nowrap;
+            border: 1px solid #1814143d;
+            height: 37px;
+
+            /* Prevent text from wrapping */
+          }
+
+        }
+
+        .addNewCourse {
+          font-size: 15px;
+          font-weight: 700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          white-space: nowrap;
+          gap: 10px;
+
+          button {
+            border: none;
+            outline: none;
+            padding: 7px 18px;
+            /* height: 37px; */
+            border: 1px solid rgba(24, 20, 20, 0.2392156863);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+
+            &:first-child {
+              // background-color: #009688;
+              // color: #fff;
+              background-color: transparent;
+              border: 1px solid rgba(24, 20, 20, 0.2392156863);
+              color: #645c5c;
+            }
+
+
+
+          }
+        }
+      }
+    }
+  }
+
+  .reloading {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+
+    td {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+
+  }
+
+}
+
+
+
+.professorCourses {
+  // min-width: 56rem;
+  background-color: #fff;
+  // height: 50vh;
+  padding: 29px 3px 3px;
+  border-radius: 35px;
+  // width: 67rem;
+  background-color: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  height: 38rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  .professorCourseTopSide {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 33px;
+
+    .myInput {
+      position: relative;
+
+      input {
+        background-color: #ECECEC;
+        border: none;
+        border-radius: 12px;
+        width: 17rem;
+        height: 1rem;
+        padding: 18px 34px;
+        font-size: 12px;
+        outline: none;
+      }
+
+
+      .icon {
+        position: absolute;
+        left: 9px;
+        top: 6px;
+        color: #75759A;
+      }
+    }
+
+    h4 {
+      font-size: 43px;
+      font-weight: bold;
+    }
+
+  }
+
+}
+
+.professorCourseTable {
+  overflow: auto;
+  // height: 59vh;
+  // padding: 0 38px;
+  // height: 22rem;
+  height: 80%;
+  padding: 0 33px 0;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #acacac88;
+
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .profCourseHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 0 36px 0 0;
+    margin: 11px auto 14px;
+
+
+    p {
+      font-size: 23px;
+      font-weight: 500;
+    }
+  }
+
+  .line {
+    width: 97%;
+    background-color: rgb(144, 136, 136);
+    height: 1px;
+    margin: auto;
+  }
+
+  .singleProfessor {
+
+    .profCourseBody {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+      margin-top: 1rem;
+      align-items: center;
+
+      p {
+        margin: 0 !important;
+      }
+
+      h5 {
+        width: 24rem;
+        font-size: 24px;
+        font-size: 25px;
+        font-weight: 400;
+      }
+
+      .addedCourses {
+        display: flex;
+        padding: 0 5px;
+        height: 42px;
+        width: 45rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+
+
+        &::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: #ded7d7;
+          background: #acacac88;
+
+          border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+
+        .singleCourse {
+          border: 1px solid #CBD3F8;
+          display: flex;
+          padding: 6px 7px;
+          height: 42px;
+          gap: 1rem;
+
+          // border-right: none;
+          // overflow-x: auto;
+          // overflow-y: hidden;
+          /* padding: 8px 12px; */
+          // flex-wrap: nowrap;
+          // justify-content: space-between;
+          // height: 46px;
+          // font-size: 18px;
+          // align-items: center;
+          // padding: 10px 14px;
+
+          p {
+
+            // width: 7rem;
+            &:first-child {
+              min-width: 1rem;
+            }
+          }
+
+
+          &:nth-child(1) {
+            // border-radius: 12px 0 0 12px;
+          }
+        }
+      }
+
+      .addNewCourse {
+        position: absolute;
+        right: 5px;
+        margin: auto;
+        top: 1px;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 999;
+        border: 1px solid #75759A;
+        border-radius: 0px 16px 16px 0px;
+        // width: 20px;
+        // height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px 14px;
+
+      }
+    }
+
+    .lineForTableBody {
+      width: 50%;
+      background-color: #CBD3F8;
+      height: 1px;
+      margin: auto;
+      padding-bottom: 0rem;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .allCourseForSingleProfessor {}
+
+  }
+}

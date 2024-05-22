@@ -1,0 +1,46 @@
+.adminHomePage {
+  p {
+    margin: 0 !important;
+  }
+
+  padding: 10px;
+  background-color: #ECECEC;
+
+  .adminPageBody {
+    // width: 100%;
+    // display: flex; 
+    padding: 22px;
+    gap: 2rem;
+    // overflow-x: scroll;
+    overflow: hidden;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 9px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #181414;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    // background-color: #ECECEC;
+    // height: 22px;
+
+
+  }
+}
+
+
+
+.adminPageBody {
+  display: flex;
+}

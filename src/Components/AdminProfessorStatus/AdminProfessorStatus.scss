@@ -1,0 +1,249 @@
+.professorStatusPage {
+
+  background-color: #1F1F1F;
+
+  .professorStatusHeader {
+    padding: 20px 36px 20px 36px;
+
+    input {
+      background-color: #E3EDF9;
+      border: none;
+      outline: none;
+      padding: 9px 14px;
+      width: 23rem;
+      border-radius: 16px;
+
+
+    }
+  }
+
+  .studentListHeaderLeftSide {
+    display: flex;
+    align-items: center;
+
+    button {
+      border: none;
+      outline: none;
+      background-color: #1F1F1F;
+      padding: 9px 18px;
+      color: #fff;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 300;
+      margin-left: 10px;
+
+
+      span {
+        font-size: 22px;
+      }
+    }
+  }
+
+  .optionBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #E3EDF9;
+    width: 27rem;
+    font-size: 33px;
+    font-weight: bold;
+    padding: 22px;
+    height: 15rem;
+    border-radius: 27px;
+    margin-top: 17px;
+
+    .innerBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .icon {
+    background-color: #1F1F1F;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 200;
+    font-size: 15px;
+  }
+
+  .line {
+    width: 95%;
+    margin: auto auto 0 auto;
+    height: 8px;
+    background-color: #1F1F1F;
+    border-radius: 19px;
+  }
+
+  table {
+    margin-top: 4rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding-bottom: 10px;
+    width: 97%;
+    margin: auto;
+    background-color: #fff;
+
+    thead tr {
+      background-color: #1F1F1F;
+      color: #fff;
+
+      th {
+        padding: 16px 40px 16px 48px;
+        font-size: 20px;
+        /* margin-left: 1rem; */
+        font-weight: 900;
+        overflow: auto;
+
+
+        &:first-child {
+          border-radius: 10px 0 0 0;
+          min-width: 60vw;
+          min-width: 24rem;
+          padding-left: 39px;
+        }
+
+        &:nth-child(5) {
+          // min-width: 60vw;
+          min-width: 16rem;
+        }
+
+        &:last-child {
+          border-radius: 0 10px 0 0;
+          // padding-right: 6rem;
+          padding-left: 6rem;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 10px 40px 10px 48px;
+          font-size: 20px;
+          font-weight: 400;
+          cursor: pointer;
+
+          &:first-child {
+            width: 23%;
+          }
+        }
+
+        border-bottom: 1px solid rgba(166, 158, 158, 0.469);
+      }
+    }
+  }
+
+  .professorStatus {
+    display: flex;
+
+    .active {
+      width: 6rem;
+      // height: 12px;
+      background-color: green;
+      background-color: #fff;
+      border: 1px solid #E3EDF9;
+      color: #296529;
+      padding: 8px 12px;
+      border-radius: 22px 0 0 22px;
+      border-radius: 12px 0 0 12px;
+      ;
+      text-align: center;
+      cursor: pointer;
+    }
+
+
+
+    .inactive {
+      width: 6rem;
+      // height: 12px;
+      background-color: red;
+      background-color: #fff;
+      border: 1px solid #E3EDF9;
+      color: #8a2b2b;
+      padding: 8px 12px;
+      border-radius: 0 22px 22px 0;
+      border-radius: 0 12px 12px 0;
+      text-align: center;
+      cursor: pointer;
+
+    }
+  }
+
+  .isActiveStatus {
+    background-color: #CAE9C6 !important;
+    background-color: rgba(0, 128, 0, 0.4) !important;
+  }
+
+  .notActiveStatus {
+    background-color: #E9C6C6 !important;
+    background-color: rgba(255, 0, 0, 0.3) !important;
+  }
+
+  .update {
+    position: absolute;
+    right: 11px;
+
+    div {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      color: #fff;
+      padding: 7px 12px;
+      border-radius: 12px;
+
+
+      &:last-child {
+        background-color: #1F1F1F;
+
+      }
+
+      &:first-child {
+        background-color: #14689d;
+        background-color: #fff;
+        border: 1px solid #E3EDF9;
+        color: black;
+      }
+    }
+  }
+
+  .updateDoctorNames {
+    border-radius: 11px;
+    border: 2px solid;
+    padding: 7px 9px;
+    background-color: #E3EDF9;
+    /* color: #fff; */
+    border: none;
+
+
+    &:focus {
+      border-radius: 11px;
+      padding: 5px 18px;
+      outline: none;
+    }
+  }
+
+  .updateDoctorIds {
+    width: 20rem;
+    border-radius: 11px;
+    border: 2px solid;
+    padding: 7px 9px;
+    background-color: #E3EDF9;
+    /* color: #fff; */
+    border: none;
+
+    &:focus {
+      border-radius: 11px;
+      padding: 5px 18px;
+      outline: none;
+    }
+  }
+}

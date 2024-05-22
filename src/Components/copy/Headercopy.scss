@@ -1,0 +1,161 @@
+
+.slider-container {
+
+
+
+  button {
+    display: block;
+    position: absolute;
+    padding: 20px;
+    border-radius: 50%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999 !important;
+
+    &:first-child {
+      background-color: red;
+      left: 2% !important;
+    }
+
+    &:last-child {
+      background-color: #1461c3;
+      right: 2% !important;
+    }
+
+  }
+
+  a {
+    color: #031225;
+  }
+
+
+
+  .icon {
+    background-color: #031225;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 200;
+    font-size: 15px;
+  }
+
+  .item {
+    // width: 26rem !important;
+    // height: 13rem !important;
+    // border-radius: 27px !important;
+  }
+
+  .innerBox {
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+    height: 10rem;
+
+  }
+
+  .optionBox {
+    padding: 17px 22px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    user-select: none;
+    border-radius: 20px;
+    width: 80%;
+    background-color: #E3EDF9;
+    font-size: 33px;
+    font-weight: bold;
+
+    &:nth-child(2) {
+      background-color: red;
+    }
+
+    // line-height: 130px;
+    h4 {
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+
+
+  .item:nth-child(2) {
+    background-color: #FFEFE5;
+  }
+
+  .item:nth-child(3) {
+    background-color: #E3EDF9;
+  }
+
+  .item:nth-child(4) {
+    background-color: #FFEFE5;
+  }
+
+  .item:nth-child(5) {
+    background-color: #CBD3F8;
+  }
+
+  .line {
+    width: 95%;
+    margin: auto auto 0 auto;
+    height: 8px;
+    background-color: #031225;
+    border-radius: 19px;
+  }
+}
+
+.toLeft {
+  position: absolute;
+  color: #031225;
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 999;
+  background-color: #1461c3;
+  padding: 12px;
+  cursor: pointer;
+  left: 22px;
+  top: 9rem;
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  border-radius: 50%;
+  display: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.toRight {
+  position: absolute;
+  color: #031225;
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 999;
+  background-color: #1461c3;
+  padding: 12px;
+  cursor: pointer;
+  right: 22px;
+  top: 9rem;
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  border-radius: 50%;
+  display: none;
+  ;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}

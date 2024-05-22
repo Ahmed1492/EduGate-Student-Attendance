@@ -1,0 +1,94 @@
+.loginPage {
+  // padding: 22px;
+
+  .wrapper {
+    width: 100%;
+
+    .containerLoginForm {
+      display: flex;
+      background-color: #fff;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      border-radius: 12px;
+      padding: 5px;
+
+      height: 100vh;
+
+    }
+
+    .signForm {
+      .content {
+        margin-left: 5rem;
+
+        h3 {
+          font-size: 47px;
+        }
+
+        p {
+          font-size: 19px;
+          color: #ada5a5;
+        }
+      }
+
+      padding: 22px;
+      width: 40%;
+
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          border: none;
+          outline: none;
+          background-color: #ECECEC;
+          padding: 15px 10px;
+          border-radius: 12px;
+          margin-bottom: 27px;
+          width: 80%;
+          margin: auto;
+        }
+
+        label:first-child {
+          margin-top: 1rem;
+        }
+
+        label {
+          margin-bottom: 5px;
+          font-weight: 600;
+          margin-left: 5rem;
+          padding-top: 1rem;
+        }
+
+        button {
+          border: none;
+          outline: none;
+          padding: 15px 12px;
+          border-radius: 12px;
+          background-color: #1F1F1F;
+          color: #fff;
+          width: 80%;
+          margin: auto;
+          margin-top: 4rem;
+
+        }
+      }
+
+    }
+  }
+
+  .logo {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

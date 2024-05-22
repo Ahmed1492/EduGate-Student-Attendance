@@ -1,0 +1,208 @@
+// .mySlider {
+//   overflow: hidden;
+//   margin-top: 4rem;
+
+//   .slider-container {
+//     width: 45%;
+//     margin: auto;
+//   }
+
+//   .mybox {
+//     width: 18rem;
+//     height: 14rem;
+//     background-color: #213d41;
+//     text-align: center;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-image: url('../../images/card3.PNG');
+//     background-position: center;
+//     background-size: cover;
+//     border-radius: 22px;
+//     background-repeat: no-repeat;
+//   }
+
+//   a {
+//     margin-left: 2rem;
+//   }
+
+//   button {
+//     font-size: 33px !important;
+//     width: 52px;
+//     height: 52px;
+//     border-radius: 19px;
+//     font-weight: 300;
+
+//     background-color: #C1D5FC;
+
+//     &:first-child {
+//       left: -75px;
+//     }
+
+//     &:last-child {
+//       right: -65px;
+//     }
+
+//     &:hover {
+//       background-color: #C1D5FC;
+//     }
+//   }
+// }
+
+// .con {
+//   width: 100% !important;
+//   margin: auto;
+// }
+
+// .embla {
+//   overflow: hidden;
+// }
+
+// .embla__container {
+//   display: flex;
+// }
+
+// .embla__slide {
+//   flex: 0 0 100%;
+//   min-width: 0;
+// }
+
+// .keen-slider__slide {
+//   width: 18rem;
+//   height: 14rem;
+//   background-color: #213d41;
+//   text-align: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-image: url('../../images/card3.PNG');
+//   background-position: center;
+//   background-size: cover;
+//   border-radius: 22px;
+//   background-repeat: no-repeat;
+// }
+
+// .slider-container {
+//   position: relative;
+//   width: 100%;
+//   overflow: hidden;
+// }
+
+// .slider {
+//   display: flex;
+//   transition: transform 0.5s ease-in-out;
+// }
+
+// .slide {
+//   flex: 0 0 30%;
+//   /* Each slide occupies 30% width */
+//   padding: 10px;
+//   box-sizing: border-box;
+// }
+
+// .prev,
+// .next {
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   padding: 10px;
+//   background-color: #fff;
+//   border: none;
+//   cursor: pointer;
+//   z-index: 99999;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .prev {
+//   left: 0;
+// }
+
+// .next {
+//   right: 0;
+// }
+
+// .mybox {
+//   width: 14rem;
+//   height: 13rem;
+//   background-color: #213d41;
+//   text-align: center;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-image: url('../../images/card3.PNG');
+//   background-position: center;
+//   background-size: cover;
+//   border-radius: 22px;
+//   background-repeat: no-repeat;
+//   margin-right: 3rem;
+
+// }
+
+// .doctorSubjects {
+//   padding: 20px;
+//   width: 47rem;
+//   margin: auto;
+// }
+
+.doctorSubjects {
+  .mybbox {
+    width: 80%;
+    margin: auto;
+    height: 11rem;
+    background-color: red;
+    margin-right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../images/card3.PNG');
+    background-position: center;
+    background-size: cover;
+    border-radius: 22px;
+    background-repeat: no-repeat;
+    /* Add margin to create space between boxes */
+  }
+
+  .slider-wrapper {
+    width: 51rem;
+  }
+
+  .myyf {
+    width: 19rem !important;
+    height: 11rem;
+  }
+
+  button.slick-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px !important;
+
+    &:before {
+      background-color: #C1D5FC !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      border-radius: 22px !important;
+      color: black !important;
+      // padding: 20px !important;
+      border-radius: 11px !important;
+      z-index: 99999 !important;
+      font-weight: 200 !important;
+      width: 40px;
+      height: 40px;
+      color: #fff !important;
+
+
+    }
+
+    &:hover {
+      background-color: #C1D5FC !important;
+
+    }
+  }
+
+}

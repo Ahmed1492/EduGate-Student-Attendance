@@ -1,0 +1,41 @@
+.newUserAcount {
+  // box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+  height: 38rem;
+  border: none;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+  border: 1px #435186 dashed !important;
+  border-radius: 36px;
+  padding: 12px;
+  border-style: groove;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  button {
+    border: none;
+    outline: none;
+  }
+
+  .createNewUserBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    p:first-child {
+      font-weight: 300;
+      font-size: 67px;
+      line-height: 55px;
+    }
+
+    p:nth-child(2) {
+      font-size: 22px;
+      text-align: center;
+    }
+  }
+}

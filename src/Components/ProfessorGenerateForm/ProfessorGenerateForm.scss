@@ -1,0 +1,88 @@
+.layer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  // background-color: rgba(0, 0, 0, .2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createQrCard {
+  width: 25rem;
+  background-color: #fff;
+  z-index: 2;
+  border-radius: 16px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 20px;
+  width: 24rem;
+  background: #fff;
+
+  .form-select {
+    margin-bottom: 1rem !important;
+    padding: 12px 2.25rem 12px .75rem !important;
+
+    option::before {
+      content: 'Group';
+    }
+  }
+
+  .cardGeneratingBody {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 18rem;
+  }
+
+  .generateButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      background-color: #1F1F1F;
+      color: #fff;
+      width: 100%;
+      font-weight: 500;
+    }
+  }
+
+  .disapledGroup {
+    // display: flex;
+    // justify-content: center;
+    // margin-bottom: 2rem;
+    // width: 100%;
+    // margin: auto;
+    // padding: 9px 6px;
+    // display: flex;
+    // justify-content: center;
+    // margin-bottom: 2rem;
+    // text-align: center;
+    // font-size: 23px;
+    // line-height: 12px;
+    // border-radius: 12px;
+    // border: 1px solid;
+    padding: 10px 8px;
+    width: 1%;
+    padding: 10px 8px;
+    /* width: 1%; */
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    background-color: #e4e4e473;
+    font-weight: 700;
+    /* font-size: 15px; */
+    width: 40%;
+  }
+}
+
+.createQrCard {}

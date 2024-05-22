@@ -1,0 +1,43 @@
+.attandceListRightSide {
+  padding: 10px;
+}
+
+.AllattandanceListBox {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.attandanceListBox {
+  width: 350px;
+  height: 250px;
+  // background: rgb(253, 29, 60);
+  // background: linear-gradient(90deg, rgba(253, 29, 60, 1) 0%, rgba(253, 29, 60, 1) 0%, rgba(29, 75, 253, 1) 78%);
+  background-image: url(../../images/card2.PNG);
+  width: 43%;
+  height: 23rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 30px;
+
+  h3 {
+    font-size: 34px;
+    font-weight: 400;
+  }
+
+  h4 {
+    font-size: 40px;
+    font-weight: 200;
+  }
+
+  h5 {
+    font-size: 30px;
+    font-weight: 600;
+  }
+}

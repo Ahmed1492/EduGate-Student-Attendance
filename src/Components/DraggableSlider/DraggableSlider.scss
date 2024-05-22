@@ -1,0 +1,234 @@
+.profsubjects {
+
+	$bg-color: #222;
+	$margin: 20px;
+
+
+	ul {
+		padding: 0;
+	}
+
+	li {
+		list-style: none;
+	}
+
+
+	main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 50px 0;
+
+
+	}
+
+	.wrapper {
+		position: relative;
+
+		// Gradient side fade
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 0;
+			z-index: 1;
+
+			content: "";
+			display: block;
+			// width: $margin;
+			height: 100%;
+		}
+
+		&:before {
+			left: 0;
+			background: linear-gradient(90deg, $bg-color, transparent);
+		}
+
+		&:after {
+			right: 0;
+			background: linear-gradient(-90deg, $bg-color, transparent);
+		}
+	}
+
+	.items {
+		position: relative;
+		// width: 100%;
+		overflow: hidden;
+		// white-space: nowrap;
+		cursor: pointer;
+		display: flex;
+		gap: 2rem;
+
+		&.active {
+			cursor: grab;
+		}
+	}
+
+	.item {
+		display: inline-block;
+		// margin-left: $margin;
+		user-select: none;
+
+		// margin-left: 12rem !important;
+		// background: tomato;
+		// width: 50%;
+		// height: 130px;
+		// color: $bg-color;
+		// font-size: 33px;
+		// font-weight: bold;
+		// line-height: 130px;
+		&:last-child {
+			margin-right: $margin;
+		}
+	}
+}
+
+
+// 	.professorCourses {
+// 		box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+// 		// min-width: 48rem;
+// 		background-color: #fff;
+// 		padding: 10px 7px 10px 10px;
+// 		overflow: auto;
+// 		border-radius: 12px;
+// 		background-color: #fff;
+// 		// max-width: 51rem;
+// 		width: 49rem;
+// 		// height: 79vh;
+// 		// line-height: 7px;
+
+// 		&::-webkit-scrollbar {
+// 			width: 10px;
+// 		}
+
+// 		&::-webkit-scrollbar-track {
+// 			background: transparent;
+// 		}
+
+// 		&::-webkit-scrollbar-thumb {
+// 			background: #181414;
+// 			border-radius: 10px;
+// 		}
+
+// 		&::-webkit-scrollbar-thumb:hover {
+// 			background: #555;
+// 		}
+
+// 		.professorCourseTopSide {
+// 			display: flex;
+// 			justify-content: space-between;
+
+// 			.myInput {
+// 				position: relative;
+
+// 				input {
+// 					background-color: #ECECEC;
+// 					border: none;
+// 					border-radius: 12px;
+// 					width: 17rem;
+// 					height: 1rem;
+// 					padding: 18px 34px;
+// 					font-size: 12px;
+// 					outline: none;
+// 				}
+
+// 				.icon {
+// 					position: absolute;
+// 					left: 9px;
+// 					top: 6px;
+// 					color: #75759A;
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	.professorCourseTable {
+// 		overflow: auto;
+// 		// height: 59vh;
+
+
+// 		.profCourseHeader {
+// 			display: flex;
+// 			justify-content: space-around;
+// 		}
+
+// 		.line {
+// 			width: 97%;
+// 			background-color: rgb(144, 136, 136);
+// 			height: 1px;
+// 			margin: auto;
+// 		}
+
+// 		.singleProfessor {
+
+// 			.profCourseBody {
+// 				display: flex;
+// 				position: relative;
+// 				justify-content: space-between;
+// 				margin-top: 1rem;
+// 				align-items: center;
+
+// 				p {
+// 					margin: 0 !important;
+// 				}
+
+// 				h5 {
+// 					width: 24rem;
+// 					font-size: 24px;
+// 				}
+
+// 				.addedCourses {
+// 					display: flex;
+// 					overflow-x: auto;
+// 					margin-right: 34px;
+
+// 					.singleCourse {
+// 						font-size: 11px;
+// 						padding: 4px 17px !important;
+// 						border: 1px solid #CBD3F8;
+// 						padding: 8px 16px !important;
+// 						width: 111px;
+
+
+// 					}
+
+// 					.singleCourse:nth-child(1) {
+// 						border-radius: 12px 0 0 12px;
+// 					}
+// 				}
+
+// 				.addNewCourse {
+// 					position: absolute;
+// 					right: 5px;
+// 					margin: auto;
+// 					top: 1px;
+// 					font-size: 22px;
+// 					cursor: pointer;
+// 					z-index: 999;
+// 					border: 1px solid #75759A;
+// 					border-radius: 0px 16px 16px 0px;
+// 					width: 20px;
+// 					height: 20px;
+// 					display: flex;
+// 					justify-content: center;
+// 					align-items: center;
+// 					padding: 16px 14px;
+
+// 				}
+// 			}
+
+
+
+
+// 			.lineForTableBody {
+// 				width: 50%;
+// 				background-color: #CBD3F8;
+// 				height: 1px;
+// 				margin: auto;
+// 				padding-bottom: 0rem;
+// 				margin-top: 10px;
+// 				margin-bottom: 20px;
+// 			}
+// 		}
+// 	}
+
+// }

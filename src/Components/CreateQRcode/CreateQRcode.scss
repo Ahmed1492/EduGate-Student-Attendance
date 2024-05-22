@@ -1,0 +1,53 @@
+.allQrCodes {
+  margin: auto;
+  padding: 20px;
+  background-color: #D4D4D4;
+  border-radius: 40px;
+  ;
+
+}
+
+.qrCodeBox {
+  // background: linear-gradient(135deg, #8585c0, #2a4f5d);
+  background-image: url(../../images/card1.png);
+  border-radius: 9px;
+  margin-top: 1rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left -3px;
+  padding: 10px;
+  height: 212px;
+  width: 100%;
+
+  .createQRcode {
+    background-color: #FC6736 !important;
+    color: #fff;
+    font-weight: 400;
+    /* padding: 8px 30px; */
+    /* margin-top: 1rem; */
+    border-radius: 20px;
+    padding: 6px 22px;
+  }
+}
+
+.groupOfCourse {
+  display: flex;
+  gap: 1rem;
+
+  span {
+
+    background-color: #9E9E9E;
+    color: #fff;
+    padding: 0 20px;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 57px;
+    height: 33px;
+    color: #797979;
+    background-color: #fff;
+    border: 1px solid #797979;
+  }
+
+}

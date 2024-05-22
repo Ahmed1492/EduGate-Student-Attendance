@@ -1,0 +1,144 @@
+.professorsAccount {
+
+  background-color: #1F1F1F;
+
+  .profAccountHeader {
+    padding: 20px 36px 20px 36px;
+
+    input {
+      background-color: #E3EDF9;
+      border: none;
+      outline: none;
+      padding: 12px 14px;
+      width: 23rem;
+      border-radius: 17px;
+
+    }
+  }
+
+  .optionBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #E3EDF9;
+    width: 27rem;
+    font-size: 33px;
+    font-weight: bold;
+    padding: 22px;
+    height: 15rem;
+    border-radius: 27px;
+    margin-top: 17px;
+
+    .innerBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .icon {
+    background-color: #1F1F1F;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 200;
+    font-size: 15px;
+  }
+
+  .line {
+    width: 95%;
+    margin: auto auto 0 auto;
+    height: 8px;
+    background-color: #1F1F1F;
+    border-radius: 19px;
+  }
+
+  table {
+    margin-top: 4rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding-bottom: 10px;
+    width: 97%;
+    margin: auto;
+    background-color: #fff;
+
+    thead tr {
+      background-color: #1F1F1F;
+      color: #fff;
+
+      th {
+        padding: 16px 2px 16px 26px;
+        font-size: 20px;
+        /* margin-left: 1rem; */
+        font-weight: 900;
+        overflow: auto;
+
+        &:nth-child(2) {
+          text-align: center;
+        }
+
+        &:first-child {
+          border-radius: 10px 0 0 0;
+          // min-width: 60vw;
+          // min-width: 24rem;
+          padding-left: 39px;
+        }
+
+        &:nth-child(5) {
+          // min-width: 60vw;
+          min-width: 16rem;
+        }
+
+        &:last-child {
+          border-radius: 0 10px 0 0;
+          // padding-right: 6rem;
+        }
+
+        &:last-child {
+          padding: 10px 11px 10px 35px;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 13px 26px 13px 27px;
+          font-size: 20px;
+          font-weight: 400;
+
+
+        }
+
+        border-bottom: 1px solid rgba(166, 158, 158, 0.469);
+      }
+    }
+  }
+
+  .professorAccount {}
+
+  .adminAccount {}
+
+  .adminLogo {
+    gap: 9px;
+    font-weight: 500;
+
+    i {
+      color: #FF9800;
+      font-size: 19px;
+    }
+  }
+
+  .professorLogo {
+    gap: 9px;
+    font-weight: 500;
+
+    i {
+      font-size: 19px;
+      color: #2196f3;
+    }
+  }
+}

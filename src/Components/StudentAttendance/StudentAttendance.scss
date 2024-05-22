@@ -1,0 +1,121 @@
+// .studentAttendanceHeader {
+//   background-color: rgb(75, 75, 188);
+//   color: #fff;
+//   align-items: center !important;
+//   display: flex;
+//   padding: 10px;
+//   width: 97% !important;
+//   margin: auto;
+//   border-radius: 17px;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+
+//   p {
+//     margin-bottom: 0 !important;
+//   }
+
+//   & p:first-child {
+//     width: 18vw;
+//   }
+
+//   & p:nth-child(2) {
+//     width: 9vw;
+//   }
+
+// }
+
+// .studentAttendanceBody {
+//   margin-top: 1rem !important;
+//   align-items: center !important;
+//   display: flex;
+//   padding: 10px;
+//   width: 97% !important;
+//   margin: auto;
+//   justify-content: space-between;
+//   flex-wrap: wrap;
+
+//   p {
+//     margin-bottom: 0 !important;
+//     font-weight: 600;
+//     width: 5vw;
+//   }
+
+//   & p:first-child {
+//     width: 18vw;
+//   }
+
+//   & p:nth-child(2) {
+//     width: 9vw;
+//   }
+
+// }
+
+// .line {
+//   width: 97%;
+//   margin-top: 1rem !important;
+//   background-color: rgb(84, 76, 76);
+//   height: 2px;
+//   margin: auto;
+// }
+
+.stdTableAttendance {
+  .studentAttendanceHeader tr {
+    background-color: #1F1F1F;
+    color: #fff;
+  }
+
+  .absent {
+    background-color: rgb(154 134 134 / 31%);
+  }
+
+  .Present {
+    background-color: rgb(8 137 8 / 44%);
+  }
+
+  thead tr th {
+    padding: 10px 10px 10px 10px;
+    text-align: left;
+    margin: auto;
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  thead tr th:first-child {
+    border-radius: 10px 0 0 0;
+  }
+
+  thead tr th:last-child {
+    border-radius: 0 10px 0 0;
+  }
+
+  tbody tr td {
+    padding: 10px 10px 10px 10px;
+
+  }
+
+  tbody tr td {
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 14px;
+
+  }
+
+  tbody tr {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+  }
+
+  table.studentTable {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+
+  .studentStatus {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+}
