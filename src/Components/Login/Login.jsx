@@ -15,7 +15,7 @@ export const Login = ({ baseUrl, setAuth }) => {
     password: "",
   });
   let userAuthorization;
-
+  console.log("new");
   const screenWidth = window.screen.width;
   const screenHeight = window.screen.height;
 

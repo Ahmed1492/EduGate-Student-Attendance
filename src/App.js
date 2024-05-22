@@ -24,7 +24,7 @@ import { AdminStudentCourseAddMode } from "./Components/AdminStudentCourseAddMod
 import { Login } from "./Components/Login/Login";
 import { useEffect, useState } from "react";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
-const baseUrl = 'https://bfe8-196-157-96-213.ngrok-free.app/api/';
+const baseUrl = 'https://cf27-196-129-126-65.ngrok-free.app/api/';
 
 const tesstt = `farag123@hti.com , Mohamed.Ahmed@hti.com  , P@$$w0rd`;
 
@@ -34,12 +34,7 @@ function App() {
   const [auth, setAuth] = useState();
   return (
     <>
-      {/* <DynamicQRCodeGenerator /> */}
-      {/* <Test /> */}
-      {/* <SimpleSlider /> */}
-      {/* <AdminStudentCourseAddMode /> */}
-      {/* <Test /> */}
-      {/* <Login /> */}
+
       <Routes>
         <Route path="/login" element={<Login setAuth={setAuth} baseUrl={baseUrl} />} />
         <Route path="/" element={<ProtectedRoute><AdminHomePage baseUrl={baseUrl} /></ProtectedRoute>} />

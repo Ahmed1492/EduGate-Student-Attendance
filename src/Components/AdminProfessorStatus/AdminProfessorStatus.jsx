@@ -187,7 +187,7 @@ export const AdminProfessorStatus = (props) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>ID</th>
+              <th>User_Name</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -220,7 +220,7 @@ export const AdminProfessorStatus = (props) => {
                       autoFocus
                     />
                   ) : (
-                    doctor.userId
+                    doctor.userName
                   )}
                 </td>
 
