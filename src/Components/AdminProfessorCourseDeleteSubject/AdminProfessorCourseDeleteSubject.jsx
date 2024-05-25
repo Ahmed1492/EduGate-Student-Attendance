@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import "./AdminStudentCourseDeleteSubject.scss";
-import axios from "axios";
+import "./AdminProfessorCourseDeleteSubject.scss";
 import Swal from "sweetalert2";
-export const AdminStudentCourseDeleteSubject = ({
-  targetStudentToDelete,
+import axios from "axios";
+export const AdminProfessorCourseDeleteSubject = ({
   baseUrl,
-  setIsDeleteSubjectMode,
-  setAddNewStudentMode,
-  getData,
-  setStudentWithGroups,
-  setIsEmptyInp,
+  getProfessorData,
+  targetProfToDeleteCourses,
+  setIsDeleteCourseMode,
 }) => {
   const [deletedCourse, setDeletedCourse] = useState({
-    studentId: "",
+    doctorId: "",
     courseId: "",
     groupId: "",
   });
-  const studentCourses = targetStudentToDelete.courses;
+  const profCourses = targetProfToDeleteCourses?.courses;
 
   const deleteCourseDetails = (event) => {
     const selectedOption = event.target.options[event.target.selectedIndex];
@@ -25,7 +22,7 @@ export const AdminStudentCourseDeleteSubject = ({
     const newObj = { ...deletedCourse };
     newObj.courseId = courseId;
     newObj.groupId = groupId;
-    newObj.studentId = targetStudentToDelete.studentid;
+    newObj.doctorId = targetProfToDeleteCourses.doctorId;
     setDeletedCourse(newObj);
     console.log(newObj);
   };
@@ -38,7 +35,7 @@ export const AdminStudentCourseDeleteSubject = ({
     ) {
       try {
         let myResponse = await axios.post(
-          baseUrl + "StudentCourseGroup/DeleteCourseFromStudent",
+          baseUrl + "Doctors/DeleteCourseFromDoctor",
           deletedCourse,
           {
             headers: {
@@ -47,10 +44,12 @@ export const AdminStudentCourseDeleteSubject = ({
             },
           }
         );
-        await setIsDeleteSubjectMode(false);
-        await setStudentWithGroups([]);
-        await setIsEmptyInp(true);
-        await getData();
+        await setIsDeleteCourseMode(false)
+        await getProfessorData()
+        // await setIsDeleteSubjectMode(false);
+        // await setStudentWithGroups([]);
+        // await setIsEmptyInp(true);
+        // await getProfessorData();
         console.log(myResponse);
       } catch (error) {
         console.log(error);
@@ -64,10 +63,10 @@ export const AdminStudentCourseDeleteSubject = ({
     }
   };
   return (
-    <div className="deleteSubjectsBox">
+    <div className="deleteSubjectsBoxProf">
       <div className="headerOfCard">
         <h4>Delete Subjects</h4>
-        <div onClick={() => setIsDeleteSubjectMode(false)}>
+        <div onClick={() => setIsDeleteCourseMode(false)}>
           <i className="fa-solid fa-xmark"></i>
         </div>
       </div>
@@ -79,10 +78,10 @@ export const AdminStudentCourseDeleteSubject = ({
             <option value="" defaultValue>
               Subjects
             </option>
-            {studentCourses.map((course, index) => (
+            {profCourses?.map((course, index) => (
               <option
                 key={index}
-                data-id={course.groupid}
+                data-id={course.groupId}
                 value={course.courseId}
               >
                 {course.coursename}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdminProfessorsAccount.scss";
 import axios from "axios";
+import Swal from "sweetalert2";
 export const AdminProfessorsAccount = ({ baseUrl }) => {
   const professorsAcount = [
     {
@@ -94,8 +95,12 @@ export const AdminProfessorsAccount = ({ baseUrl }) => {
       role: "Doctor",
     },
   ];
+  const [isEmptyInp, setIsImptyInp] = useState(true);
   const [allProfessorsAccounts, setAllProfessorsAccount] = useState([]);
+  const [searchedProf, setSearchedPro] = useState(null);
+  const [deletedEmail, setDeletedEmail] = useState();
   const token = localStorage.getItem("myToken");
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
   const getAllProfessorsAccounts = async () => {
     try {
       let myResponse = await axios.get(
@@ -107,11 +112,55 @@ export const AdminProfessorsAccount = ({ baseUrl }) => {
           },
         }
       );
-      setAllProfessorsAccount(myResponse.data);
+      await setAllProfessorsAccount(myResponse.data);
     } catch (error) {
       console.log(error);
     }
   };
+  const handleSearch = (e) => {
+    e.target.value !== "" ? setIsImptyInp(false) : setIsImptyInp(true);
+    let searchedValue = e.target.value.toLowerCase();
+    console.log(isEmptyInp);
+    let searchedDoctor = allProfessorsAccounts.filter((doctor) =>
+      doctor.name.toLowerCase().includes(searchedValue)
+    );
+    setSearchedPro(searchedDoctor);
+    console.log(searchedDoctor);
+  };
+
+  const deleteAccount = (doctor) => {
+    setIsDeleteMode(true);
+    setDeletedEmail(doctor.email);
+  };
+
+  const deleteFromSystem = async () => {
+    try {
+      let myRespone = await axios.post(
+        baseUrl + `Account/DeleteUser/${deletedEmail}`,
+        deletedEmail,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "ngrok-skip-browser-warning": "true",
+          },
+        }
+      );
+      setIsImptyInp(true);
+      await setIsDeleteMode(false);
+      await Swal.fire({
+        icon: "success",
+        title: "account Deleted Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      await setAllProfessorsAccount([]);
+      await getAllProfessorsAccounts();
+      console.log(myRespone);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getAllProfessorsAccounts();
   }, []);
@@ -119,52 +168,126 @@ export const AdminProfessorsAccount = ({ baseUrl }) => {
     <div className="professorsAccount">
       <div className=" bg-white">
         <div className="profAccountHeader mb-2 d-flex justify-content-between align-items-center">
-          <h2> Professors & Admins  Account</h2>
-          <input type="text" placeholder="Search For Professors" />
+          <h2> Professors & Admins Account</h2>
+          <input
+            onChange={handleSearch}
+            type="text"
+            placeholder="Search For Professors"
+          />
         </div>
+        {isDeleteMode === true && (
+          <div className="layer">
+            <div className="deleteBoxForAccount">
+              <div className="warningDelete">
+                <h4>Warning</h4>
+                <i className="fa-solid fa-triangle-exclamation"></i>
+              </div>
+              <p>
+                Are You Sure You Want To Delete `
+                <span className="nameOfAccount">{deletedEmail}</span>` Account{" "}
+                <br />
+                From The System
+              </p>
+              <div className="buttons">
+                <button onClick={() => setIsDeleteMode(false)}>Cancel</button>
+                <button onClick={deleteFromSystem}>Delete</button>
+              </div>
+            </div>
+          </div>
+        )}
         <table>
           <thead>
             <tr>
               <th>Name</th>
-              <th>ID</th>
+              {/* <th>ID</th> */}
               <th>Username</th>
               <th>Email</th>
               <th>phone Number</th>
               <th>Role</th>
+              <th>Delete Account</th>
             </tr>
           </thead>
-          <tbody>
-            {allProfessorsAccounts.map((doctor, index) => (
-              <tr key={index}>
-                <td>{doctor.name}</td>
-                <td>{doctor.id}</td>
-                <td>{doctor.userName}</td>
-                <td>{doctor.email}</td>
-                <td>{doctor.phoneNumber}</td>
-                <td>
-                  <div
-                    className={`${
-                      doctor.role == "Admin"
-                        ? "adminAccount"
-                        : "professorAccount"
-                    }  `}
-                  >
-                    {doctor.role === "Admin" ? (
-                      <div className="adminLogo d-flex align-items-center">
-                        <i className="fa-solid fa-crown"></i>
-                        {doctor.role}
-                      </div>
-                    ) : (
-                      <div className="professorLogo d-flex align-items-center">
-                        <i className="fa-regular fa-circle-user"></i>{" "}
-                        {doctor.role}
-                      </div>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          {isEmptyInp === true ? (
+            <tbody>
+              {allProfessorsAccounts.map((doctor, index) => (
+                <tr key={index}>
+                  <td>{doctor.name}</td>
+                  {/* <td>{doctor.id}</td> */}
+                  <td>{doctor.userName}</td>
+                  <td>{doctor.email}</td>
+                  <td>{doctor.phoneNumber}</td>
+                  <td>
+                    <div
+                      className={`${
+                        doctor.role === "Admin"
+                          ? "adminAccount"
+                          : "professorAccount"
+                      }  `}
+                    >
+                      {doctor.role === "Admin" ? (
+                        <div className="adminLogo d-flex align-items-center">
+                          <i className="fa-solid fa-crown"></i>
+                          {doctor.role}
+                        </div>
+                      ) : (
+                        <div className="professorLogo d-flex align-items-center">
+                          <i className="fa-regular fa-circle-user"></i>{" "}
+                          {doctor.role}
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="deleteAccount">
+                      <button onClick={() => deleteAccount(doctor)}>
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              {searchedProf.map((doctor, index) => (
+                <tr key={index}>
+                  <td>{doctor.name}</td>
+                  {/* <td>{doctor.id}</td> */}
+                  <td>{doctor.userName}</td>
+                  <td>{doctor.email}</td>
+                  <td>{doctor.phoneNumber}</td>
+                  <td>
+                    <div
+                      className={`${
+                        doctor.role === "Admin"
+                          ? "adminAccount"
+                          : "professorAccount"
+                      }  `}
+                    >
+                      {doctor.role === "Admin" ? (
+                        <div className="adminLogo d-flex align-items-center">
+                          <i className="fa-solid fa-crown"></i>
+                          {doctor.role}
+                        </div>
+                      ) : (
+                        <div className="professorLogo d-flex align-items-center">
+                          <i className="fa-regular fa-circle-user"></i>{" "}
+                          {doctor.role}
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="deleteAccount">
+                      <button onClick={() => deleteAccount(doctor)}>
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

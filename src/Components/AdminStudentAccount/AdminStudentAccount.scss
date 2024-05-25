@@ -81,7 +81,7 @@
           border-radius: 10px 0 0 0;
           min-width: 60vw;
           min-width: 24rem;
-          padding-left: 39px;
+          // padding-left: 39px;
         }
 
         &:nth-child(5) {
@@ -103,7 +103,7 @@
           font-size: 20px;
           font-weight: 400;
 
-          &:last-child {}
+          &:first-child {}
         }
 
         border-bottom: 1px solid rgba(166, 158, 158, 0.469);

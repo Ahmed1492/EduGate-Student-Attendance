@@ -91,6 +91,9 @@
     thead tr {
       background-color: #1F1F1F;
       color: #fff;
+      .newUpdate {
+        width: 14% !important;
+      }
 
       th {
         padding: 16px 40px 16px 48px;
@@ -99,12 +102,19 @@
         font-weight: 900;
         overflow: auto;
 
+      
+
 
         &:first-child {
           border-radius: 10px 0 0 0;
           min-width: 60vw;
           min-width: 24rem;
           padding-left: 39px;
+          width: 40%;
+        }
+
+        &:nth-child(2) {
+          width: 40%;
         }
 
         &:nth-child(5) {
@@ -128,8 +138,10 @@
           font-weight: 400;
           cursor: pointer;
 
+
           &:first-child {
-            width: 23%;
+            // width: 23%;
+            padding-left: 38px;
           }
         }
 

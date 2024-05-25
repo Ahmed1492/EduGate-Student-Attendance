@@ -8,6 +8,7 @@ export const AdminSelectSubjectToStudent = ({
   setStudentWithGroups,
   setreload,
   baseUrl,
+  setIsEmptyInp,
 }) => {
   // const baseUrl = "https://7877-196-129-112-238.ngrok-free.app/";
   const [allSubjects, setAllSubjects] = useState([]);
@@ -74,6 +75,7 @@ export const AdminSelectSubjectToStudent = ({
         }
       );
       console.log(myResponse);
+      setIsEmptyInp(true);
     } catch (error) {
       console.log(error);
     }

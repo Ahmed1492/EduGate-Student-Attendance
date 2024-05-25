@@ -7,6 +7,7 @@ export const AdminShowSubjectsMode = (props) => {
   const token = localStorage.getItem("myToken");
 
   const [allCourses, setAllCourses] = useState([]);
+  const [searchedCourse, setSearchedCourse] = useState(null);
   // const allCourses = [
   //   { courseName: "Data Base", code: "CSC 419" },
   //   { courseName: "Computer Science", code: "CSC 101" },
@@ -32,6 +33,7 @@ export const AdminShowSubjectsMode = (props) => {
   // ];
   // const baseUrl = "https://c14f-196-129-118-88.ngrok-free.app/";
   const [isConfirmed, setIsConfirmed] = useState(null);
+  const [isImpty, setIsImpty] = useState(true);
 
   const toggleMoreOptions = (index) => {
     // Hide all "more options" sections except for the one corresponding to the clicked index
@@ -66,6 +68,7 @@ export const AdminShowSubjectsMode = (props) => {
       });
       setIsConfirmed(null);
       getData();
+      setIsImpty(true)
       console.log(myResponse);
     } catch (error) {
       console.log(error);
@@ -89,6 +92,17 @@ export const AdminShowSubjectsMode = (props) => {
       console.log(error);
     }
   };
+
+  const handleSearch = (e) => {
+    e.target.value === "" ? setIsImpty(true) : setIsImpty(false);
+    console.log(isImpty);
+    const searchValue = e.target.value.toLowerCase();
+    const filteredCourses = allCourses.filter((course) =>
+      course.courseName.toLowerCase().includes(searchValue)
+    );
+    console.log(filteredCourses.length);
+    setSearchedCourse(filteredCourses);
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -106,69 +120,126 @@ export const AdminShowSubjectsMode = (props) => {
           <div className="subjectBoxHeader">
             <h4>Subjects</h4>
             <div className="myInput">
-              <input type="text" placeholder="Search By Subject Code" />
+              <input onChange={handleSearch} type="text" placeholder="Search" />
               <div className="icon">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </div>
             </div>
           </div>
           <button onClick={props.addNewSubject} className="addNewSubject">
-            + Add Now Subject
+            + Add New Subject
           </button>
-          <div className="allAvaliableCourses">
-            {allCourses.map((singleCourse, index) => (
-              <div key={index} className="specifiedSubject">
-                <div className="eachSubject">
-                  <div className="courseDetails">
-                    <div className="icon">
-                      <i className="fa-brands fa-readme"></i>
+          {isImpty === true ? (
+            <div className="allAvaliableCourses">
+              {allCourses.map((singleCourse, index) => (
+                <div key={index} className="specifiedSubject">
+                  <div className="eachSubject">
+                    <div className="courseDetails">
+                      <div className="icon">
+                        <i className="fa-brands fa-readme"></i>
+                      </div>
+                      <div className="coursDesc">
+                        <h5>{singleCourse.courseName}</h5>
+                        <p>{singleCourse.code}</p>
+                      </div>
                     </div>
-                    <div className="coursDesc">
-                      <h5>{singleCourse.courseName}</h5>
-                      <p>{singleCourse.code}</p>
-                    </div>
-                  </div>
-                  <div
-                    onClick={() => toggleMoreOptions(index)}
-                    className="moreOptions"
-                  >
-                    <i className="fa-solid fa-ellipsis"></i>
-                  </div>
-                  <div className="getMoreOptionForEachCourse">
-                    <button onClick={() => handleModifyCourse(singleCourse)}>
-                      Modify
-                    </button>
-                    <button
-                      onClick={() => handleDeleteCourse(singleCourse, index)}
+                    <div
+                      onClick={() => toggleMoreOptions(index)}
+                      className="moreOptions"
                     >
-                      Delete
-                    </button>
+                      <i className="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <div className="getMoreOptionForEachCourse">
+                      <button onClick={() => handleModifyCourse(singleCourse)}>
+                        Modify
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCourse(singleCourse, index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                </div>
-                {isConfirmed === index && (
-                  <div className="confirmDelete">
-                    <div className="wrapper position-relative">
-                      <div className="warning">
-                        <p>
-                          Are You Sure You Want To Delete "{" "}
-                          <span>{singleCourse.courseName}</span> " from The
-                          System
-                        </p>
-                        <div className="actions">
-                          <button onClick={cancelDeleting}>Cancel</button>
-                          <button
-                            onClick={() => deleteFromSystem(singleCourse)}
-                          >
-                            Delete
-                          </button>
+                  {isConfirmed === index && (
+                    <div className="confirmDelete">
+                      <div className="wrapper position-relative">
+                        <div className="warning">
+                          <p>
+                            Are You Sure You Want To Delete "{" "}
+                            <span>{singleCourse.courseName}</span> " from The
+                            System
+                          </p>
+                          <div className="actions">
+                            <button onClick={cancelDeleting}>Cancel</button>
+                            <button
+                              onClick={() => deleteFromSystem(singleCourse)}
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="allAvaliableCourses">
+              {searchedCourse.map((singleCourse, index) => (
+                <div key={index} className="specifiedSubject">
+                  <div className="eachSubject">
+                    <div className="courseDetails">
+                      <div className="icon">
+                        <i className="fa-brands fa-readme"></i>
+                      </div>
+                      <div className="coursDesc">
+                        <h5>{singleCourse.courseName}</h5>
+                        <p>{singleCourse.code}</p>
+                      </div>
+                    </div>
+                    <div
+                      onClick={() => toggleMoreOptions(index)}
+                      className="moreOptions"
+                    >
+                      <i className="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <div className="getMoreOptionForEachCourse">
+                      <button onClick={() => handleModifyCourse(singleCourse)}>
+                        Modify
+                      </button>
+                      <button
+                        onClick={() => handleDeleteCourse(singleCourse, index)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
+                  {isConfirmed === index && (
+                    <div className="confirmDelete">
+                      <div className="wrapper position-relative">
+                        <div className="warning">
+                          <p>
+                            Are You Sure You Want To Delete "{" "}
+                            <span>{singleCourse.courseName}</span> " from The
+                            System
+                          </p>
+                          <div className="actions">
+                            <button onClick={cancelDeleting}>Cancel</button>
+                            <button
+                              onClick={() => deleteFromSystem(singleCourse)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

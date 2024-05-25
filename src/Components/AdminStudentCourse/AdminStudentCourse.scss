@@ -92,7 +92,7 @@
           border-radius: 10px 0 0 0;
           min-width: 60vw;
           min-width: 24rem;
-          padding-left: 39px;
+          // padding-left: 39px;
         }
 
         &:nth-child(5) {
@@ -102,8 +102,7 @@
 
         &:last-child {
           border-radius: 0 10px 0 0;
-          text-align: center;
-
+          padding: 2px 2px 2px 64px;
           // padding-right: 6rem;
         }
       }

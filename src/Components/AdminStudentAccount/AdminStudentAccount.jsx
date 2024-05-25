@@ -100,6 +100,21 @@ export const AdminStudentAccount = ({ baseUrl }) => {
       console.log(error);
     }
   };
+
+  const [searchedStd, setSearchedStd] = useState(null);
+  const [isEmptyInp, setIsEmptyInp] = useState(true);
+
+  const handleSearch = (e) => {
+    e.target.value !== "" ? setIsEmptyInp(false) : setIsEmptyInp(true);
+    e.target.value !== "" ? setIsEmptyInp(false) : setIsEmptyInp(true);
+    let searchedValue = e.target.value.toLowerCase();
+    let searchedStudent = studentsAccounts.filter((doctor) =>
+      String(doctor.userName).includes(searchedValue)
+    );
+    console.log(searchedStudent);
+    setSearchedStd(searchedStudent);
+    console.log(searchedStd);
+  };
   useEffect(() => {
     getAllAccounts();
   }, []);
@@ -108,7 +123,11 @@ export const AdminStudentAccount = ({ baseUrl }) => {
       <div className=" bg-white">
         <div className="studentsAccountHeader mb-2 d-flex justify-content-between align-items-center">
           <h1> Students Account</h1>
-          <input type="text" placeholder="Search For Professors" />
+          <input
+            onChange={handleSearch}
+            type="text"
+            placeholder="Search For Students"
+          />
         </div>
         <table>
           <thead>
@@ -118,15 +137,27 @@ export const AdminStudentAccount = ({ baseUrl }) => {
               <th>Email</th>
             </tr>
           </thead>
-          <tbody>
-            {studentsAccounts.map((student, index) => (
-              <tr key={index}>
-                <td>{student.name}</td>
-                <td>{student.userName}</td>
-                <td>{student.email}</td>
-              </tr>
-            ))}
-          </tbody>
+          {isEmptyInp === true ? (
+            <tbody>
+              {studentsAccounts.map((student, index) => (
+                <tr key={index}>
+                  <td>{student.name}</td>
+                  <td>{student.userName}</td>
+                  <td>{student.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              {searchedStd.map((student, index) => (
+                <tr key={index}>
+                  <td>{student.name}</td>
+                  <td>{student.userName}</td>
+                  <td>{student.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

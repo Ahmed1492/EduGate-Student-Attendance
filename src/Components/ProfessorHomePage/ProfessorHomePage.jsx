@@ -78,7 +78,7 @@ export const ProfessorHomePage = ({ baseUrl, setStudentAttendanceCourse }) => {
     getData();
   }, []);
   return userRole2 !== "Admin" ? (
-    allCourses.length === 0 ? (
+    allCourses?.length === 0 ? (
       <div className="loadScreen">
         <div className="lds-dual-ring"></div>
       </div>

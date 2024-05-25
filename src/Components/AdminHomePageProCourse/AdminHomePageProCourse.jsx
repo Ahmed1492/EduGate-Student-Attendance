@@ -4,12 +4,15 @@ import axios from "axios";
 import { AdminSelectSubjectToStudent } from "../AdminSelectSubjectToStudent/AdminSelectSubjectToStudent";
 import { AdminSelectSubjectToDoctor } from "../AdminSelectSubjectToDoctor/AdminSelectSubjectToDoctor";
 import { AdminHomePageProCourseAddMode } from "../AdminHomePageProCourseAddMode/AdminHomePageProCourseAddMode";
+import { AdminProfessorCourseDeleteSubject } from "../AdminProfessorCourseDeleteSubject/AdminProfessorCourseDeleteSubject";
 export const AdminHomePageProCourse = ({ baseUrl }) => {
   const [allProfessors, setAllProfessors] = useState([]);
   const [addSubjectMode, setAddSubjectMode] = useState(false);
   const [professor, setProfessor] = useState({});
   const [isAddNewProfessorMode, setIsAddNewProfessorMode] = useState(false);
   const token = localStorage.getItem("myToken");
+  const [isDeleteCourseMode, setIsDeleteCourseMode] = useState(false);
+  const [targetProfToDeleteCourses, setTargetProfToDeleteCourses] = useState();
   const getProfessorData = async () => {
     try {
       let myResponse = await axios.get(baseUrl + "doctors/doctorCourse", {
@@ -33,6 +36,13 @@ export const AdminHomePageProCourse = ({ baseUrl }) => {
     setIsAddNewProfessorMode(false);
     setProfessor(professor);
   };
+
+  const handleDeleteSubject = (professor) => {
+    console.log(professor);
+    setTargetProfToDeleteCourses(professor);
+    setIsDeleteCourseMode(true);
+  };
+
   useEffect(() => {
     getProfessorData();
   }, []);
@@ -70,6 +80,14 @@ export const AdminHomePageProCourse = ({ baseUrl }) => {
                 setAllProfessors={setAllProfessors}
               />
             )}
+            {isDeleteCourseMode === true && (
+              <AdminProfessorCourseDeleteSubject
+                targetProfToDeleteCourses={targetProfToDeleteCourses}
+                setIsDeleteCourseMode={setIsDeleteCourseMode}
+                getProfessorData={getProfessorData}
+                baseUrl={baseUrl}
+              />
+            )}
             <table className="w-100">
               <thead>
                 <tr>
@@ -77,15 +95,8 @@ export const AdminHomePageProCourse = ({ baseUrl }) => {
                   <th>Courses</th>
                 </tr>
               </thead>
-              {allProfessors.length === 0 ? (
-                <tbody className="reloading">
-                  <tr>
-                    <td>
-                      <i className="d-flex justify-content-center align-items-center h-100 fa-solid fa-spinner fa-2x fa-spin "></i>
-                    </td>
-                  </tr>
-                </tbody>
-              ) : (
+
+              {allProfessors.length !== 0 ? (
                 <tbody>
                   {allProfessors.map((professor, indexOfAllProfessor) => (
                     <tr key={indexOfAllProfessor}>
@@ -111,18 +122,42 @@ export const AdminHomePageProCourse = ({ baseUrl }) => {
                             >
                               + Add Subject
                             </button>
+
+                            <button
+                              onClick={() =>
+                                handleDeleteSubject(
+                                  professor,
+                                  indexOfAllProfessor
+                                )
+                              }
+                            >
+                              Delete Sub
+                            </button>
                             {/* <button
-                        onClick={() =>
-                          handleUpdateSubjects(professor, indexOfAllProfessor)
-                        }
-                      >
-                        Update
-                      </button> */}
+                    onClick={() =>
+                      handleUpdateSubjects(professor, indexOfAllProfessor)
+                    }
+                  >
+                    Update
+                  </button> */}
                           </div>
                         </div>
                       </td>
                     </tr>
                   ))}
+                </tbody>
+              ) : (
+                <tbody>
+                  <tr>
+                    <td colSpan="2">
+                      <div className="profCourNoData">
+                        <div className="d-flex align-items-center gap-2 ">
+                          <h4> No Data Avaliable</h4>
+                          <i className="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               )}
             </table>

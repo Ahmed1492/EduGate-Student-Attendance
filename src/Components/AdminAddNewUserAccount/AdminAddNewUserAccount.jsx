@@ -64,7 +64,14 @@ export const AdminAddNewUserAccount = ({
             },
           }
         );
-        console.log("New user account added:", addedNewUserAccount);
+        await setIsAddNewUserAccountMode(false);
+        Swal.fire({
+          icon: "success",
+          title: "New user account added",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+
         console.log("Response:", response.data); // Assuming the response contains useful data
       } catch (error) {
         Swal.fire({

@@ -10,8 +10,11 @@
       border: none;
       outline: none;
       padding: 12px 14px;
-      width: 23rem;
+      width: 22vw;
       border-radius: 17px;
+      font-size: 18px;
+      height: 3rem;
+      font-weight: 500;
 
     }
   }
@@ -34,6 +37,90 @@
       justify-content: space-between;
       align-items: center;
     }
+  }
+
+  .deleteAccount {
+
+    text-align: center;
+
+    button {
+      background-color: #1F1F1F;
+      color: #fff;
+      padding: 7px 15px;
+      border-radius: 10px;
+    }
+
+  }
+
+  .warningDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 3px;
+
+    i {
+      font-size: 33px;
+      color: #ff9800;
+    }
+  }
+
+  .deleteBoxForAccount {
+    background-color: #fff;
+    /* width: 38vw; */
+    padding: 25px 22px;
+    text-align: center;
+
+    z-index: 99;
+    border-radius: 14px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    h4 {
+      font-size: 34px;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 22px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      padding-top: 10px;
+
+    }
+
+    button {
+      background-color: #fff;
+      outline: none;
+      padding: 9px 19px;
+      border-radius: 10px;
+      border: 1px solid #a29f9f;
+
+      &:last-child {
+        color: red;
+      }
+    }
+  }
+
+  .layer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nameOfAccount {
+    font-weight: 900;
   }
 
   .icon {
@@ -76,9 +163,6 @@
         font-weight: 900;
         overflow: auto;
 
-        &:nth-child(2) {
-          text-align: center;
-        }
 
         &:first-child {
           border-radius: 10px 0 0 0;
@@ -110,7 +194,9 @@
           font-size: 20px;
           font-weight: 400;
 
-
+          &:first-child {
+            padding-left: 38px !important;
+          }
         }
 
         border-bottom: 1px solid rgba(166, 158, 158, 0.469);

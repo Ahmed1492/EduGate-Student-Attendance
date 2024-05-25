@@ -4,7 +4,6 @@ import axios from "axios";
 import { AdminProfessorStatusAdd } from "../AdminProfessorStatusAdd/AdminProfessorStatusAdd";
 export const AdminProfessorStatus = (props) => {
   const baseUrl = props.baseUrl;
-  // const baseUrl = `https://7877-196-129-112-238.ngrok-free.app/`;
   const [professorAccount, setProfessorAccount] = useState([]);
   const [isreload, seIsReload] = useState(false);
   const [isAddDoctorMode, seIsAddDoctorMode] = useState(false);
@@ -12,18 +11,19 @@ export const AdminProfessorStatus = (props) => {
   const [editingIndexForName, setEditingIndexForName] = useState(null);
   const [modifyingModeForName, setModifyingModeForName] = useState(false);
   const [afterUpdatingProfessor, setAfterUpdatingProfessor] = useState([]);
-
   const [editingIndexForId, setEditingIndexForId] = useState(null);
   const [modifyingModeForId, setModifyingModeForId] = useState(false);
+  const [searchedProf, setSearchedProf] = useState(null);
+  const [isEmptyInp, setIsEmptyInp] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
 
   const handleStatus = async (e) => {
     let newState = !professorAccount[e].isActive;
     let newObj = { ...professorAccount[e] };
     newObj.isActive = newState;
-    // console.log(newObj);
     seIsReload(true);
-    console.log(newObj);
     seIsReload(newObj);
+
     updateProfessorStatus(newObj, isreload);
   };
   const token = localStorage.getItem("myToken");
@@ -39,7 +39,7 @@ export const AdminProfessorStatus = (props) => {
       });
       seIsReload(true);
 
-      console.log(myResponse);
+      // console.log(myResponse);
     } catch (error) {
       console.log(error);
     }
@@ -51,11 +51,11 @@ export const AdminProfessorStatus = (props) => {
       const myResponse = await axios.get(baseUrl + "doctors", {
         headers: {
           Authorization: `Bearer ${token}`,
-
           "ngrok-skip-browser-warning": "69420",
         },
       });
       setProfessorAccount(myResponse.data);
+      console.log(myResponse.data);
     } catch (error) {
       console.log(error);
       throw error;
@@ -93,6 +93,7 @@ export const AdminProfessorStatus = (props) => {
   };
 
   const handleDoubleClickForName = (index) => {
+    setIsClicked(true);
     setModifyingModeForName(true);
     setEditingIndexForName(index);
     setEditingIndexForId(null);
@@ -109,6 +110,7 @@ export const AdminProfessorStatus = (props) => {
     // console.log("index : ", e);
     // console.log("doctor : ", doctor);
     setAfterUpdatingProfessor(doctor);
+    console.log("After", afterUpdatingProfessor);
 
     // console.log("modify mode : ", modifyingModeForName);
   };
@@ -119,26 +121,35 @@ export const AdminProfessorStatus = (props) => {
   };
 
   const cancelUpdatingForName = () => {
+    setIsClicked(false);
     seIsReload(true);
     setEditingIndexForName(null);
   };
 
   const handleDoubleClickForId = (index) => {
+    setIsClicked(true);
     setEditingIndexForName(false);
     setModifyingModeForId(true);
     setEditingIndexForId(index);
   };
   const handleChangeForId = (e, index, doctor) => {
     const updatedProfessors = [...professorAccount];
-    updatedProfessors[index].userId = e.target.value;
+    updatedProfessors[index].userName = e.target.value;
     setProfessorAccount(updatedProfessors);
     setAfterUpdatingProfessor(doctor);
-    // console.log("event : ", e);
-    // console.log("index : ", index);
-    console.log("doctor : ", doctor);
+  };
+
+  const handleSearch = (e) => {
+    e.target.value !== "" ? setIsEmptyInp(false) : setIsEmptyInp(true);
+    let searchedValue = e.target.value.toLowerCase();
+    let searchedDoctor = professorAccount.filter((doctor) =>
+      doctor.name.toLowerCase().includes(searchedValue)
+    );
+    setSearchedProf(searchedDoctor);
   };
 
   const handleBlurForId = (index) => {};
+
   const updateingDoctorId = async () => {
     try {
       seIsReload({});
@@ -156,17 +167,17 @@ export const AdminProfessorStatus = (props) => {
       seIsReload(true);
       setEditingIndexForName(null);
       setEditingIndexForId(null);
-      console.log(myResponse);
+      // console.log(myResponse);
     } catch (error) {
       console.log(error);
     }
   };
   const cancelUpdatingForId = () => {
+    setIsClicked(false)
     setEditingIndexForId(null);
   };
   useEffect(() => {
     getData();
-    console.log("requests");
   }, [isreload]);
 
   return professorAccount.length === 0 ? (
@@ -179,7 +190,11 @@ export const AdminProfessorStatus = (props) => {
         <div className="professorStatusHeader mb-2 d-flex justify-content-between align-items-center">
           <h1> Professor Status</h1>
           <div className="studentListHeaderLeftSide">
-            <input type="text" placeholder="Search For Professors" />
+            <input
+              onChange={handleSearch}
+              type="text"
+              placeholder="Search For Professors"
+            />
             <button onClick={activeAddDoctorMode}>+ Add New Doctor</button>
           </div>
         </div>
@@ -187,88 +202,180 @@ export const AdminProfessorStatus = (props) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>User_Name</th>
+              <th>UserName</th>
               <th>Status</th>
+              {isClicked && <th className="newUpdate">Update</th>}
             </tr>
           </thead>
-          <tbody>
-            {professorAccount.map((doctor, index) => (
-              <tr key={index}>
-                <td onDoubleClick={() => handleDoubleClickForName(index)}>
-                  {modifyingModeForName && editingIndexForName === index ? (
-                    <input
-                      className="updateDoctorNames"
-                      type="text"
-                      value={doctor.name}
-                      onChange={(e) => handleChangeForName(e, index, doctor)}
-                      onBlur={handleBlurForName}
-                      autoFocus
-                    />
-                  ) : (
-                    doctor.name
-                  )}
-                </td>
-
-                <td onDoubleClick={() => handleDoubleClickForId(index)}>
-                  {modifyingModeForId && editingIndexForId === index ? (
-                    <input
-                      className="updateDoctorIds"
-                      type="text"
-                      value={doctor.userId}
-                      onChange={(e) => handleChangeForId(e, index, doctor)}
-                      onBlur={handleBlurForId}
-                      autoFocus
-                    />
-                  ) : (
-                    doctor.userName
-                  )}
-                </td>
-
-                <td>
-                  <div
-                    onClick={() => handleStatus(index)}
-                    className="professorStatus"
-                  >
-                    {doctor?.isActive === true ? (
-                      <>
-                        <div className="active isActiveStatus">Active</div>
-                        <div className="inactive ">InActive</div>
-                      </>
+          {isEmptyInp === true ? (
+            <tbody>
+              {professorAccount.map((doctor, index) => (
+                <tr key={index}>
+                  <td onDoubleClick={() => handleDoubleClickForName(index)}>
+                    {modifyingModeForName && editingIndexForName === index ? (
+                      <input
+                        className="updateDoctorNames"
+                        type="text"
+                        value={doctor.name}
+                        onChange={(e) => handleChangeForName(e, index, doctor)}
+                        onBlur={handleBlurForName}
+                        autoFocus
+                      />
                     ) : (
-                      <>
-                        <div className="active">Active</div>
-                        <div className="inactive notActiveStatus ">
-                          InActive
+                      doctor.name
+                    )}
+                  </td>
+
+                  <td onDoubleClick={() => handleDoubleClickForId(index)}>
+                    {modifyingModeForId && editingIndexForId === index ? (
+                      <input
+                        className="updateDoctorIds"
+                        type="text"
+                        value={doctor?.userName}
+                        onChange={(e) => handleChangeForId(e, index, doctor)}
+                        onBlur={handleBlurForId}
+                        autoFocus
+                      />
+                    ) : (
+                      doctor.userName
+                    )}
+                  </td>
+
+                  <td>
+                    <div
+                      onClick={() => handleStatus(index)}
+                      className="professorStatus"
+                    >
+                      {doctor?.isActive === true ? (
+                        <>
+                          <div className="active isActiveStatus">Active</div>
+                          <div className="inactive ">InActive</div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="active">Active</div>
+                          <div className="inactive notActiveStatus ">
+                            InActive
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </td>
+
+                  {modifyingModeForName === true && (
+                    <td className="update">
+                      {modifyingModeForName &&
+                        editingIndexForName === index && (
+                          <div>
+                            <button onClick={cancelUpdatingForName}>
+                              Cancel
+                            </button>
+                            <button onClick={updateingDoctorName}>
+                              Update
+                            </button>
+                          </div>
+                        )}
+                    </td>
+                  )}
+
+                  {modifyingModeForId === true && (
+                    <td className="update">
+                      {modifyingModeForId && editingIndexForId === index && (
+                        <div>
+                          <button onClick={cancelUpdatingForId}>Cancel</button>
+                          <button onClick={updateingDoctorId}>Update</button>
                         </div>
-                      </>
-                    )}
-                  </div>
-                </td>
-
-                {modifyingModeForName === true && (
-                  <td className="update">
-                    {modifyingModeForName && editingIndexForName === index && (
-                      <div>
-                        <button onClick={cancelUpdatingForName}>Cancel</button>
-                        <button onClick={updateingDoctorName}>Update</button>
-                      </div>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              {searchedProf.map((doctor, index) => (
+                <tr key={index}>
+                  <td onDoubleClick={() => handleDoubleClickForName(index)}>
+                    {modifyingModeForName && editingIndexForName === index ? (
+                      <input
+                        className="updateDoctorNames"
+                        type="text"
+                        value={doctor.name}
+                        onChange={(e) => handleChangeForName(e, index, doctor)}
+                        onBlur={handleBlurForName}
+                        autoFocus
+                      />
+                    ) : (
+                      doctor.name
                     )}
                   </td>
-                )}
 
-                {modifyingModeForId === true && (
-                  <td className="update">
-                    {modifyingModeForId && editingIndexForId === index && (
-                      <div>
-                        <button onClick={cancelUpdatingForId}>Cancel</button>
-                        <button onClick={updateingDoctorId}>Update</button>
-                      </div>
+                  <td onDoubleClick={() => handleDoubleClickForId(index)}>
+                    {modifyingModeForId && editingIndexForId === index ? (
+                      <input
+                        className="updateDoctorIds"
+                        type="text"
+                        value={doctor.userName}
+                        onChange={(e) => handleChangeForId(e, index, doctor)}
+                        onBlur={handleBlurForId}
+                        autoFocus
+                      />
+                    ) : (
+                      doctor.userName
                     )}
                   </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
+
+                  <td>
+                    <div
+                      onClick={() => handleStatus(index)}
+                      className="professorStatus"
+                    >
+                      {doctor?.isActive === true ? (
+                        <>
+                          <div className="active isActiveStatus">Active</div>
+                          <div className="inactive ">InActive</div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="active">Active</div>
+                          <div className="inactive notActiveStatus ">
+                            InActive
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </td>
+
+                  {modifyingModeForName === true && (
+                    <td className="update">
+                      {modifyingModeForName &&
+                        editingIndexForName === index && (
+                          <div>
+                            <button onClick={cancelUpdatingForName}>
+                              Cancel
+                            </button>
+                            <button onClick={updateingDoctorName}>
+                              Update
+                            </button>
+                          </div>
+                        )}
+                    </td>
+                  )}
+
+                  {modifyingModeForId === true && (
+                    <td className="update">
+                      {modifyingModeForId && editingIndexForId === index && (
+                        <div>
+                          <button onClick={cancelUpdatingForId}>Cancel</button>
+                          <button onClick={updateingDoctorId}>Update</button>
+                        </div>
+                      )}
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
         {isAddDoctorMode === true && (
           <AdminProfessorStatusAdd

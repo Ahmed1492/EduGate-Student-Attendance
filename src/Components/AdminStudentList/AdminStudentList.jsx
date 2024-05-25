@@ -23,10 +23,23 @@ export const AdminStudentList = ({ baseUrl }) => {
     }
   };
   const [addNewStudentMode, setAddNewStudentMode] = useState(false);
+
+  const [searchedStd, setSearchedStd] = useState(null);
+  const [isEmptyInp, setIsEmptyInp] = useState(true);
+
   const activeAddNewStdMode = () => {
     setAddNewStudentMode(true);
   };
-
+  const handleSearch = (e) => {
+    e.target.value !== "" ? setIsEmptyInp(false) : setIsEmptyInp(true);
+    let searchedValue = Number(e.target.value);
+    let searchedStudent = studentList.filter((doctor) =>
+      String(doctor.id).includes(searchedValue)
+    );
+    console.log(searchedStudent);
+    setSearchedStd(searchedStudent);
+    console.log(searchedStd);
+  };
   useEffect(() => {
     getStudentData();
     console.log("sda");
@@ -41,7 +54,11 @@ export const AdminStudentList = ({ baseUrl }) => {
         <div className="studentListHeader mb-2 d-flex justify-content-between align-items-center">
           <h1> Student List</h1>
           <div className="studentListHeaderLeftSide">
-            <input type="text" placeholder="Search For Professors" />
+            <input
+              onChange={handleSearch}
+              type="text"
+              placeholder="Search For Students"
+            />
             <button onClick={activeAddNewStdMode}>+ Add New Student</button>
           </div>
         </div>
@@ -52,14 +69,25 @@ export const AdminStudentList = ({ baseUrl }) => {
               <th>ID</th>
             </tr>
           </thead>
-          <tbody>
-            {studentList.map((doctor, index) => (
-              <tr key={index}>
-                <td>{doctor.name}</td>
-                <td>{doctor.id}</td>
-              </tr>
-            ))}
-          </tbody>
+          {isEmptyInp === true ? (
+            <tbody>
+              {studentList.map((doctor, index) => (
+                <tr key={index}>
+                  <td>{doctor.name}</td>
+                  <td>{doctor.id}</td>
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              {searchedStd.map((doctor, index) => (
+                <tr key={index}>
+                  <td>{doctor.name}</td>
+                  <td>{doctor.id}</td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
         {addNewStudentMode === true && (
           <AdminStudentListAddStd

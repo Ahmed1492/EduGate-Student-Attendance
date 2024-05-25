@@ -14,6 +14,8 @@ export const AdminStudentCourse = (props) => {
   const [addNewStudentMode, setAddNewStudentMode] = useState(false);
   const [isDeleteSubjectMode, setIsDeleteSubjectMode] = useState(false);
   const [targetStudentToDelete, setTargetStudentToDelete] = useState([]);
+  const [searchedStd, setSearchedStd] = useState(null);
+  const [isEmptyInp, setIsEmptyInp] = useState(true);
 
   const getData = async () => {
     setreload(true);
@@ -50,10 +52,22 @@ export const AdminStudentCourse = (props) => {
     setTargetStudentToDelete(student);
     console.log(student);
   };
+
+  const handleSearch = (e) => {
+    e.target.value !== "" ? setIsEmptyInp(false) : setIsEmptyInp(true);
+    let searchedValue = Number(e.target.value);
+    let searchedStudent = studentWithGroups.filter((student) =>
+      String(student.studentid).includes(searchedValue)
+    );
+    console.log(searchedStudent);
+    setSearchedStd(searchedStudent);
+    console.log(searchedStd);
+    console.log(targetStudentToDelete);
+  };
   useEffect(() => {
     getData();
     console.log("dd");
-  }, [isSelectSubjectToStudent, reload]);
+  }, [isSelectSubjectToStudent, reload ]);
   return studentWithGroups.length === 0 ? (
     <div className="loadScreen">
       <div className="lds-dual-ring"></div>
@@ -74,7 +88,11 @@ export const AdminStudentCourse = (props) => {
         <div className="studentCoursesHeader mb-2 d-flex justify-content-between align-items-center">
           <h1> Students Courses</h1>
           <div>
-            <input type="text" placeholder="Search For Students" />
+            <input
+              onChange={handleSearch}
+              type="text"
+              placeholder="Search For Students"
+            />
             <button onClick={handleAdding}>+ Add New Student</button>
           </div>
         </div>
@@ -88,17 +106,18 @@ export const AdminStudentCourse = (props) => {
             setreload={setreload}
             baseUrl={baseUrl}
             getData={getData}
+            setIsEmptyInp={setIsEmptyInp}
           />
         )}
         {isDeleteSubjectMode === true && (
           <AdminStudentCourseDeleteSubject
-            baseUrl={baseUrl}
+            baseUrl={baseUrl} setIsEmptyInp={setIsEmptyInp} setStudentWithGroups={setStudentWithGroups}
             targetStudentToDelete={targetStudentToDelete}
             setAddNewStudentMode={setAddNewStudentMode}
             SetIsSelectSubjectToStudent={SetIsSelectSubjectToStudent}
             setIsDeleteSubjectMode={setIsDeleteSubjectMode}
             getData={getData}
-          />
+          /> 
         )}
 
         <table>
@@ -109,43 +128,83 @@ export const AdminStudentCourse = (props) => {
               <th>Courses</th>
             </tr>
           </thead>
-          <tbody>
-            {studentWithGroups.map((student, index) => (
-              <tr key={index}>
-                <td>{student.studentname}</td>
-                <td>{student.studentid}</td>
-                <td>
-                  <div>
-                    <div className="studentDetails">
-                      <div className="allCourses">
-                        {student.courses.map((singleCourse, index) => (
-                          <div key={index} className="singelCourse">
-                            <p>
-                              {singleCourse.coursename}, {singleCourse.group}{" "}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="buttonsAddandDelete d-flex align-items-center justify-content-center">
-                        <button
-                          onClick={() => addSubjectToStudent(student)}
-                          className="addCourseToStudent "
-                        >
-                          + Add
-                        </button>
-                        <button
-                          onClick={() => deleteCourseFromStudent(student)}
-                          className="deleteCourseFromStudent "
-                        >
-                          Delete
-                        </button>
+          {isEmptyInp === true ? (
+            <tbody>
+              {studentWithGroups.map((student, index) => (
+                <tr key={index}>
+                  <td>{student.studentname}</td>
+                  <td>{student.studentid}</td>
+                  <td>
+                    <div>
+                      <div className="studentDetails">
+                        <div className="allCourses">
+                          {student.courses.map((singleCourse, index) => (
+                            <div key={index} className="singelCourse">
+                              <p>
+                                {singleCourse.coursename}, {singleCourse.group}{" "}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="buttonsAddandDelete d-flex align-items-center justify-content-center">
+                          <button
+                            onClick={() => addSubjectToStudent(student)}
+                            className="addCourseToStudent "
+                          >
+                            + Add
+                          </button>
+                          <button
+                            onClick={() => deleteCourseFromStudent(student)}
+                            className="deleteCourseFromStudent "
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          ) : (
+            <tbody>
+              {searchedStd.map((student, index) => (
+                <tr key={index}>
+                  <td>{student.studentname}</td>
+                  <td>{student.studentid}</td>
+                  <td>
+                    <div>
+                      <div className="studentDetails">
+                        <div className="allCourses">
+                          {student.courses.map((singleCourse, index) => (
+                            <div key={index} className="singelCourse">
+                              <p>
+                                {singleCourse.coursename}, {singleCourse.group}{" "}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="buttonsAddandDelete d-flex align-items-center justify-content-center">
+                          <button
+                            onClick={() => addSubjectToStudent(student)}
+                            className="addCourseToStudent "
+                          >
+                            + Add
+                          </button>
+                          <button
+                            onClick={() => deleteCourseFromStudent(student)}
+                            className="deleteCourseFromStudent "
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

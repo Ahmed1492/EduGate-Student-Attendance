@@ -13,6 +13,8 @@ export const AdminStudentListAddStd = ({
     name: "",
   });
 
+
+
   const getDataFromInputs = (e) => {
     let id = e.target.id;
     let value = e.target.value;
@@ -21,6 +23,7 @@ export const AdminStudentListAddStd = ({
     setAddedStudent(newObj);
   };
   const token = localStorage.getItem("myToken");
+
 
   const addNewStudentToSystem = async () => {
     if (addedStudent.id !== "" && addedStudent.name !== "") {

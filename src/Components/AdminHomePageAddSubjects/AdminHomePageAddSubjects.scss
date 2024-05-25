@@ -35,8 +35,8 @@
         input {
           background-color: #ECECEC;
           border: none;
-          border-radius: 12px;
-          width: 14rem;
+          border-radius: 13px;
+          width: 14vw;
           height: 1rem;
           padding: 23px 31px;
           font-size: 12px;
@@ -44,6 +44,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          font-size: 19px;
+          font-weight: 400;
         }
 
         .icon {

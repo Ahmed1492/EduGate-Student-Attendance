@@ -11,6 +11,12 @@ export const AdminHomePageHeader = ({ decodedToken, baseUrl }) => {
   const [dragablePlace, setDragablePlace] = useState(0);
   const [isHoverNavBar, setIsHoverNavBar] = useState(true);
   const [mywindowScreen, setMywindowScreen] = useState($(window).width());
+
+  console.log(decodedToken);
+  const adminName =
+    decodedToken[
+      "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname"
+    ];
   const hanleToLeft = () => {
     // dragablePlace !== 0 && setDragablePlace(dragablePlace - 7);
     // console.log(items);
@@ -71,12 +77,9 @@ export const AdminHomePageHeader = ({ decodedToken, baseUrl }) => {
         <div className="adminHeaderPage">
           <div className="logo">
             <div className="">
-              <h4>Dr /Ahmed Mohamed </h4>
+              <h4> Admin / {adminName} </h4>
             </div>
-
             <img src={EduGateLogo} alt="EduGateLogo" />
-
-
             <div onClick={handleLogOut} className="logOutMenue">
               <p>LogOut</p>
             </div>
@@ -90,7 +93,6 @@ export const AdminHomePageHeader = ({ decodedToken, baseUrl }) => {
         <button onClick={hanleToRight} className="toRight">
           <i className="fa-solid fa-arrow-right"></i>
         </button>
-
         <div className="wrapper">
           <ul style={{ right: dragablePlace + "%" }} className="items">
             {/* Each Link now includes the onMouseUp handler to manage clicks post-dragging */}

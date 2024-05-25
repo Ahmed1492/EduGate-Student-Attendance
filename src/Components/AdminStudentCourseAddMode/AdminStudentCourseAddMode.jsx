@@ -83,6 +83,7 @@ export const AdminStudentCourseAddMode = ({
             },
           }
         );
+
         console.log(myResponse);
         await setAddNewStudentMode(false);
         await setStudentWithGroups([]);

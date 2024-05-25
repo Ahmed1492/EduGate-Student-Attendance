@@ -4,7 +4,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export const StudentAttendance = ({ baseUrl, studentAttendanceCourse }) => {
-  // const baseUrl = "https://7877-196-129-112-238.ngrok-free.app/";
   const parm = useParams();
   let courseId = parm.courseId;
   let groupId = parm.groupId;
@@ -82,7 +81,7 @@ export const StudentAttendance = ({ baseUrl, studentAttendanceCourse }) => {
     getAttendaceOfStudent();
     console.log("updated");
   }, [updateStudent]);
-  console.log("Current Course : ", studentAttendanceCourse);
+  // console.log("Current Course : ", studentAttendanceCourse);
   return (
     <div className="container-fluid">
       <div className="stdTableAttendance">
