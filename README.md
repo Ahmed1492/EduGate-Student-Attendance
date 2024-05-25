@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# EduGate Attendance System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Modern React-based attendance management app for educational institutions. Securely store and manage student and faculty data with role-based access control. Supports user authentication with separate admin and doctor licenses.
+
 
 ## Available Scripts
 
